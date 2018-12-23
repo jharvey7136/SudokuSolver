@@ -29,7 +29,7 @@ namespace SudokuSolverForm
                                       .Where(c => c.GetType() == type);
         }
 
-
+        /*---------------------- function to read and load all inputs in the cells ----------------------*/
         public int LoadPuzzle(string[,] puzzle, SudokuForm form)
         {
             var cells = GetAll(form, typeof(TextBox));
@@ -54,7 +54,7 @@ namespace SudokuSolverForm
             return 1;
         }
 
-
+        /*---------------------- converts the strings in the textboxes to ints ----------------------*/
         public int[,] ConvertToInts(string[,] puzzle)
         {
             int x;
@@ -73,13 +73,72 @@ namespace SudokuSolverForm
         }
 
 
-
-        public int SolveHelper()
+        /*---------------------- function to recursively test each cell with valid numbers 1-9 ----------------------*/
+        public bool SolveHelper(int[,] puzzle, int row, int column)
         {
+            int number = 1;
 
-            return 1;
+            //test if already advanced through the puzzle
+            if (row == 9) return true;
+
+            //test if cell is already set
+            if (puzzle[row, column] > 0)            //need to test this
+            {
+                if (column == 8)
+                {
+                    if (SolveHelper(puzzle, row + 1, 0)) return true;
+                }
+                else
+                {
+                    if (SolveHelper(puzzle, row, column + 1)) return true;
+                }
+                return false;
+            }
+
+            for (; number < 10; number++)
+            {
+                if (IsValid(number, puzzle, row, column))
+                {
+                    puzzle[row,column] = number;
+                    if (column == 8)
+                    {
+                        if (SolveHelper(puzzle, row + 1, 0)) return true;
+                    }
+                    else
+                    {
+                        if (SolveHelper(puzzle, row, column + 1)) return true;
+                    }
+                    puzzle[row,column] = 0;
+                }
+            }
+
+            return false;
         }
 
+        /*---------------------- function to test if number is valid in the given cell ----------------------*/
+        public bool IsValid(int number, int[,] puzzle, int row, int column)
+        {
+            int i = 0;
+            int modRow = 3 * (row / 3);
+            int modCol = 3 * (column / 3);
+            int row1 = (row + 2) % 3;
+            int row2 = (row + 4) % 3;
+            int col1 = (column + 2) % 3;
+            int col2 = (column + 4) % 3;
+
+            for (i = 0; i < 9; i++)
+            {
+                if (puzzle[i, column] == number) return false;
+                if (puzzle[row,i] == number) return false;
+            }
+
+            if (puzzle[(row1 + modRow), (col1 + modCol)] == number) return false;
+            if (puzzle[(row2 + modRow), (col1 + modCol)] == number) return false;
+            if (puzzle[(row1 + modRow), (col2 + modCol)] == number) return false;
+            if (puzzle[(row2 + modRow), (col2 + modCol)] == number) return false;
+
+            return true;
+        }
 
 
     }

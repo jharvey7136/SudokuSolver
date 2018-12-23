@@ -20,20 +20,8 @@ namespace SudokuSolverForm
         {
             InitializeComponent();
             SetTestPuzzle();
-        }
-
+        }       
         
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void orig1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void buttonLoad_Click(object sender, EventArgs e)
         {
             if (solver.LoadPuzzle(puzzle, this) < 1)
@@ -56,6 +44,12 @@ namespace SudokuSolverForm
             iPuzzle = solver.ConvertToInts(puzzle);
 
             MessageBox.Show("Puzzle converted!");
+        }
+
+        private bool SolveSudoku(int[,] puzzle)
+        {
+
+            return false;
         }
 
         private void SetTestPuzzle()
@@ -84,6 +78,16 @@ namespace SudokuSolverForm
             orig76.Text = "3";
             orig78.Text = "6";
             orig80.Text = "9";            
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void orig1_TextChanged(object sender, EventArgs e)
+        {
+
         }
 
 
