@@ -13,20 +13,14 @@ namespace SudokuSolverForm
     public partial class SudokuForm : Form
     {
         string[,] puzzle = new string[9, 9];
+        MySolver solver = new MySolver();
 
         public SudokuForm()
         {
             InitializeComponent();
         }
 
-        public IEnumerable<Control> GetAll(Control control, Type type)
-        {
-            var controls = control.Controls.Cast<Control>();
-
-            return controls.SelectMany(ctrl => GetAll(ctrl, type))
-                                      .Concat(controls)
-                                      .Where(c => c.GetType() == type);
-        }
+        
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -40,29 +34,9 @@ namespace SudokuSolverForm
 
         private void buttonLoad_Click(object sender, EventArgs e)
         {
-            
-            var cells = GetAll(this, typeof(TextBox));
-            //MessageBox.Show("Total Controls: " + c.Count());
-            int i = 1;
-
-            for (int r = 0; r < 9; r++)      //iterate through rows
-            {
-                for (int c = 0; c < 9; c++)  //iterate through columns
-                {
-                    foreach (Control cell in cells)
-                    {
-                        if (cell.Name == "orig" + i)
-                        {
-                            puzzle[r, c] = cell.Text;
-                            break;
-                        }
-                    }
-                    i++;
-                }
-            }
-
-
-
+            if (solver.LoadPuzzle(puzzle, this) < 1)
+                MessageBox.Show("Error loading puzzle!");
+            else MessageBox.Show("Puzzle loaded!");
         }
 
         private void button1_Click(object sender, EventArgs e)
