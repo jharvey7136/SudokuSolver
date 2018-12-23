@@ -116,7 +116,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.buttonSolve = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.solved1 = new System.Windows.Forms.TextBox();
             this.solved81 = new System.Windows.Forms.TextBox();
@@ -954,9 +954,9 @@
             // 
             // buttonLoad
             // 
-            this.buttonLoad.Location = new System.Drawing.Point(112, 43);
+            this.buttonLoad.Location = new System.Drawing.Point(369, 184);
             this.buttonLoad.Name = "buttonLoad";
-            this.buttonLoad.Size = new System.Drawing.Size(125, 23);
+            this.buttonLoad.Size = new System.Drawing.Size(75, 23);
             this.buttonLoad.TabIndex = 83;
             this.buttonLoad.Text = "Load Puzzle";
             this.buttonLoad.UseVisualStyleBackColor = true;
@@ -995,14 +995,15 @@
             this.textBox2.Size = new System.Drawing.Size(23, 20);
             this.textBox2.TabIndex = 87;
             // 
-            // button2
+            // buttonSolve
             // 
-            this.button2.Location = new System.Drawing.Point(369, 228);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 89;
-            this.button2.Text = "Solve";
-            this.button2.UseVisualStyleBackColor = true;
+            this.buttonSolve.Location = new System.Drawing.Point(369, 254);
+            this.buttonSolve.Name = "buttonSolve";
+            this.buttonSolve.Size = new System.Drawing.Size(75, 23);
+            this.buttonSolve.TabIndex = 89;
+            this.buttonSolve.Text = "Solve";
+            this.buttonSolve.UseVisualStyleBackColor = true;
+            this.buttonSolve.Click += new System.EventHandler(this.buttonSolve_Click);
             // 
             // panel1
             // 
@@ -1742,7 +1743,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(369, 184);
+            this.button3.Location = new System.Drawing.Point(369, 219);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 90;
@@ -1756,7 +1757,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(887, 455);
             this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.buttonSolve);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
@@ -1867,7 +1868,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button buttonSolve;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox solved1;
         private System.Windows.Forms.TextBox solved81;

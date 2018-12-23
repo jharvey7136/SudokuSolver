@@ -46,10 +46,39 @@ namespace SudokuSolverForm
             MessageBox.Show("Puzzle converted!");
         }
 
+        private void buttonSolve_Click(object sender, EventArgs e)
+        {
+            if (SolveSudoku(iPuzzle))
+            {
+                MessageBox.Show("Sudoku Solved!");
+                PrintPuzzle(iPuzzle);
+            }
+        }
+
         private bool SolveSudoku(int[,] puzzle)
         {
+            return solver.SolveHelper(iPuzzle, 0, 0);
+        }
 
-            return false;
+        private void PrintPuzzle(int[,] puzzle)
+        {
+            var cells = solver.GetAll(this, typeof(TextBox));
+            int i = 1;
+            for(int r=0; r<9; r++)
+            {
+                for(int c=0; c<9; c++)
+                {
+                    foreach (Control cell in cells) //iterate through all textbox cells
+                    {
+                        if (cell.Name == "solved" + i)    //if textbox name matches, add number to puzzle array
+                        {
+                            cell.Text = puzzle[r, c].ToString();                            
+                            break;
+                        }
+                    }                    
+                    i++;
+                }
+            }
         }
 
         private void SetTestPuzzle()
@@ -90,6 +119,6 @@ namespace SudokuSolverForm
 
         }
 
-
+        
     }
 }
