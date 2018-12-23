@@ -13,11 +13,11 @@ namespace SudokuSolverForm
     class MySolver
     {
         //string[,] myPuzzle = new string[9, 9];
-        //SudokuForm form = new SudokuForm();
+        //public SudokuForm myForm;
 
         public MySolver()
         {
-            
+            //this.myForm = form;
         }
 
         public IEnumerable<Control> GetAll(Control control, Type type)
@@ -54,6 +54,31 @@ namespace SudokuSolverForm
             return 1;
         }
 
+
+        public int[,] ConvertToInts(string[,] puzzle)
+        {
+            int x;
+            int[,] intPuzzle = new int[9, 9];
+            for (int r = 0; r < 9; r++)      //iterate through rows
+            {
+                for (int c = 0; c < 9; c++)  //iterate through columns
+                {        
+                    if (Int32.TryParse(puzzle[r,c], out x))
+                    {
+                        intPuzzle[r, c] = x;
+                    }                    
+                }
+            }
+            return intPuzzle;
+        }
+
+
+
+        public int SolveHelper()
+        {
+
+            return 1;
+        }
 
 
 

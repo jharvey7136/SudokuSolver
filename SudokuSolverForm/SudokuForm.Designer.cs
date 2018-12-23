@@ -199,6 +199,7 @@
             this.solved40 = new System.Windows.Forms.TextBox();
             this.solved42 = new System.Windows.Forms.TextBox();
             this.solved41 = new System.Windows.Forms.TextBox();
+            this.button3 = new System.Windows.Forms.Button();
             this.originalPuzzle.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -1739,11 +1740,22 @@
             this.solved41.Size = new System.Drawing.Size(29, 29);
             this.solved41.TabIndex = 41;
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(369, 184);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 90;
+            this.button3.Text = "button3";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // SudokuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(887, 455);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.textBox2);
@@ -1938,6 +1950,7 @@
         private System.Windows.Forms.TextBox solved40;
         private System.Windows.Forms.TextBox solved42;
         private System.Windows.Forms.TextBox solved41;
+        private System.Windows.Forms.Button button3;
     }
 }
 
