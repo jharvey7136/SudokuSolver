@@ -12,6 +12,8 @@ namespace SudokuSolverForm
 {
     public partial class SudokuForm : Form
     {
+        string[,] puzzle = new string[9, 9];
+
         public SudokuForm()
         {
             InitializeComponent();
@@ -29,25 +31,6 @@ namespace SudokuSolverForm
         private void Form1_Load(object sender, EventArgs e)
         {
 
-
-            int i = 1;
-            int[,] puzzle = new int[9, 9];
-
-            var cells = GetAll(this, typeof(TextBox));
-            //MessageBox.Show("Total Controls: " + c.Count());
-
-            for (int n = 1; n < 82; n++)
-            {
-                foreach (Control c in cells)
-                {
-                    if(c.Name == "orig" + i)
-                    {
-                        c.Text = i.ToString();
-                        i++;
-                    }                        
-                }
-            }
-
         }
 
         private void orig1_TextChanged(object sender, EventArgs e)
@@ -55,8 +38,41 @@ namespace SudokuSolverForm
 
         }
 
+        private void buttonLoad_Click(object sender, EventArgs e)
+        {
+            
+            var cells = GetAll(this, typeof(TextBox));
+            //MessageBox.Show("Total Controls: " + c.Count());
+            int i = 1;
+
+            for (int r = 0; r < 9; r++)      //iterate through rows
+            {
+                for (int c = 0; c < 9; c++)  //iterate through columns
+                {
+                    foreach (Control cell in cells)
+                    {
+                        if (cell.Name == "orig" + i)
+                        {
+                            puzzle[r, c] = cell.Text;
+                            break;
+                        }
+                    }
+                    i++;
+                }
+            }
 
 
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            int row, column;
+
+            row = Int32.Parse(textBox1.Text);
+            column = Int32.Parse(textBox2.Text);
+
+            label1.Text = puzzle[row, column];
+        }
     }
 }

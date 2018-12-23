@@ -51,7 +51,7 @@
     <Compile Include="SudokuForm.Designer.cs">
       <DependentUpon>SudokuForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Main.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="SudokuForm.resx">
       <DependentUpon>SudokuForm.cs</DependentUpon>
