@@ -112,10 +112,6 @@
             this.orig55 = new System.Windows.Forms.TextBox();
             this.originalPuzzle = new System.Windows.Forms.Panel();
             this.buttonLoad = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.buttonSolve = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.solved1 = new System.Windows.Forms.TextBox();
@@ -199,7 +195,7 @@
             this.solved40 = new System.Windows.Forms.TextBox();
             this.solved42 = new System.Windows.Forms.TextBox();
             this.solved41 = new System.Windows.Forms.TextBox();
-            this.button3 = new System.Windows.Forms.Button();
+            this.labelStatus = new System.Windows.Forms.Label();
             this.originalPuzzle.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -954,52 +950,19 @@
             // 
             // buttonLoad
             // 
-            this.buttonLoad.Location = new System.Drawing.Point(369, 184);
+            this.buttonLoad.Location = new System.Drawing.Point(378, 109);
             this.buttonLoad.Name = "buttonLoad";
-            this.buttonLoad.Size = new System.Drawing.Size(75, 23);
+            this.buttonLoad.Size = new System.Drawing.Size(133, 43);
             this.buttonLoad.TabIndex = 83;
             this.buttonLoad.Text = "Load Puzzle";
             this.buttonLoad.UseVisualStyleBackColor = true;
             this.buttonLoad.Click += new System.EventHandler(this.buttonLoad_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(380, 136);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(50, 13);
-            this.label1.TabIndex = 84;
-            this.label1.Text = "labelTest";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(369, 110);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 85;
-            this.button1.Text = "Test Cell";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(378, 83);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(23, 20);
-            this.textBox1.TabIndex = 86;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(407, 83);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(23, 20);
-            this.textBox2.TabIndex = 87;
-            // 
             // buttonSolve
             // 
-            this.buttonSolve.Location = new System.Drawing.Point(369, 254);
+            this.buttonSolve.Location = new System.Drawing.Point(378, 213);
             this.buttonSolve.Name = "buttonSolve";
-            this.buttonSolve.Size = new System.Drawing.Size(75, 23);
+            this.buttonSolve.Size = new System.Drawing.Size(133, 43);
             this.buttonSolve.TabIndex = 89;
             this.buttonSolve.Text = "Solve";
             this.buttonSolve.UseVisualStyleBackColor = true;
@@ -1741,28 +1704,24 @@
             this.solved41.Size = new System.Drawing.Size(29, 29);
             this.solved41.TabIndex = 41;
             // 
-            // button3
+            // labelStatus
             // 
-            this.button3.Location = new System.Drawing.Point(369, 219);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 90;
-            this.button3.Text = "Convert";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.labelStatus.AutoSize = true;
+            this.labelStatus.Location = new System.Drawing.Point(393, 175);
+            this.labelStatus.Name = "labelStatus";
+            this.labelStatus.Size = new System.Drawing.Size(106, 13);
+            this.labelStatus.TabIndex = 91;
+            this.labelStatus.Text = "Load Puzzle to begin";
+            this.labelStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // SudokuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(887, 455);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.labelStatus);
             this.Controls.Add(this.buttonSolve);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonLoad);
             this.Controls.Add(this.originalPuzzle);
             this.Controls.Add(this.labelTitle);
@@ -1864,10 +1823,6 @@
         private System.Windows.Forms.TextBox orig55;
         private System.Windows.Forms.Panel originalPuzzle;
         private System.Windows.Forms.Button buttonLoad;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button buttonSolve;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox solved1;
@@ -1951,7 +1906,7 @@
         private System.Windows.Forms.TextBox solved40;
         private System.Windows.Forms.TextBox solved42;
         private System.Windows.Forms.TextBox solved41;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Label labelStatus;
     }
 }
 

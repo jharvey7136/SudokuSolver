@@ -15,6 +15,9 @@ namespace SudokuSolverForm
         //string[,] myPuzzle = new string[9, 9];
         //public SudokuForm myForm;
 
+        int[][] originalNumbers = new int[80][];
+        int origNumCount = 0;
+
         public MySolver()
         {
             //this.myForm = form;
@@ -29,8 +32,10 @@ namespace SudokuSolverForm
                                       .Where(c => c.GetType() == type);
         }
 
+
+
         /*---------------------- function to read and load all inputs in the cells ----------------------*/
-        public int LoadPuzzle(string[,] puzzle, SudokuForm form)
+        public int LoadPuzzle(string[,] puzzle, SudokuForm form, int[][] originalNumbers)
         {
             var cells = GetAll(form, typeof(TextBox));
             //MessageBox.Show("Total Controls: " + c.Count());
@@ -45,6 +50,11 @@ namespace SudokuSolverForm
                         if (cell.Name == "orig" + i)    //if textbox name matches, add number to puzzle array
                         {
                             puzzle[r, c] = cell.Text;
+                            if(cell.Text != "")
+                            {
+                                originalNumbers[origNumCount] = new int[2] { r, c };
+                                origNumCount++;
+                            }
                             break;
                         }
                     }
@@ -52,6 +62,11 @@ namespace SudokuSolverForm
                 }
             }
             return 1;
+        }
+
+        public int GetCount()
+        {
+            return origNumCount;
         }
 
         /*---------------------- converts the strings in the textboxes to ints ----------------------*/
@@ -72,6 +87,29 @@ namespace SudokuSolverForm
             return intPuzzle;
         }
 
+        /*private void StoreOriginalNumbers(int row, int column)
+        {
+            if(origNumCount == 0)
+            {
+                originalNumbers[origNumCount] = new int[2] { row, column };
+                origNumCount++;
+            }
+            else
+            {
+                int[] temp;
+                for (int i = 0; i < origNumCount; i++)
+                {
+                    temp = originalNumbers[origNumCount];
+                    if (!(temp[0] == row && temp[1] == column))
+                    {
+                        originalNumbers[origNumCount] = new int[2] { row, column };
+                        origNumCount++;
+                    }
+                } 
+            }
+        }*/
+
+
 
         /*---------------------- function to recursively test each cell with valid numbers 1-9 ----------------------*/
         public bool SolveHelper(int[,] puzzle, int row, int column)
@@ -84,6 +122,7 @@ namespace SudokuSolverForm
             //test if cell is already set
             if (puzzle[row, column] > 0)            //need to test this
             {
+                //StoreOriginalNumbers(row, column);                
                 if (column == 8)
                 {
                     if (SolveHelper(puzzle, row + 1, 0)) return true;

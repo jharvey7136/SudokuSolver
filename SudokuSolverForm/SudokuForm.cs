@@ -14,6 +14,8 @@ namespace SudokuSolverForm
     {
         string[,] puzzle = new string[9, 9];
         int[,] iPuzzle = new int[9, 9];
+        int[][] originalNumbers = new int[40][];
+        int origCount;
         MySolver solver = new MySolver();
 
         public SudokuForm()
@@ -24,34 +26,34 @@ namespace SudokuSolverForm
         
         private void buttonLoad_Click(object sender, EventArgs e)
         {
-            if (solver.LoadPuzzle(puzzle, this) < 1)
-                MessageBox.Show("Error loading puzzle!");
-            else MessageBox.Show("Puzzle loaded!");
+            if (solver.LoadPuzzle(puzzle, this, originalNumbers) < 1)
+            {
+                labelStatus.Text = "Error loading puzzle!";
+            }
+            else
+            {
+                try
+                {
+                    iPuzzle = solver.ConvertToInts(puzzle);
+                    labelStatus.Text = "Puzzle loaded!";
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error converting to ints: " + ex);
+                }
+            }            
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            int row, column;
-
-            row = Int32.Parse(textBox1.Text);
-            column = Int32.Parse(textBox2.Text);
-
-            label1.Text = iPuzzle[row, column].ToString();
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            iPuzzle = solver.ConvertToInts(puzzle);
-
-            MessageBox.Show("Puzzle converted!");
-        }
 
         private void buttonSolve_Click(object sender, EventArgs e)
         {
             if (SolveSudoku(iPuzzle))
             {
-                MessageBox.Show("Sudoku Solved!");
                 PrintPuzzle(iPuzzle);
+                labelStatus.Text = "Puzzle solved!";
+            } else
+            {
+                labelStatus.Text = "No solution!";
             }
         }
 
@@ -64,21 +66,40 @@ namespace SudokuSolverForm
         {
             var cells = solver.GetAll(this, typeof(TextBox));
             int i = 1;
+            origCount = solver.GetCount();
             for(int r=0; r<9; r++)
             {
                 for(int c=0; c<9; c++)
                 {
                     foreach (Control cell in cells) //iterate through all textbox cells
                     {
-                        if (cell.Name == "solved" + i)    //if textbox name matches, add number to puzzle array
+                        if (cell.Name == "solved" + i)    //if textbox name matches, add number to solved puzzle array
                         {
-                            cell.Text = puzzle[r, c].ToString();                            
+                            for(int m=0; m < origCount; m++)
+                            {
+                                int[] temp;
+                                temp = originalNumbers[m];
+                                if(temp[0] == r && temp[1] == c)
+                                {
+                                    cell.Text = puzzle[r, c].ToString();                                    
+                                }
+                            }
+                            if (cell.Text == "")
+                            {
+                                cell.Text = puzzle[r, c].ToString();
+                                cell.ForeColor = System.Drawing.Color.Red;
+                            }                                                        
                             break;
                         }
                     }                    
                     i++;
                 }
             }
+        }
+
+        private void StoreOriginalNumbers(int[,] puzzle)
+        {
+            
         }
 
         private void SetTestPuzzle()
